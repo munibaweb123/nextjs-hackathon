@@ -25,7 +25,7 @@ const Header = () => {
 
         {/* Mobile Menu Button (visible only on mobile) */}
         <button
-          className="md:hidden z-10"
+          className="md:hidden z-20"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -63,7 +63,7 @@ const Header = () => {
 
       {/* Mobile Navigation (visible only on mobile) */}
       <nav
-        className={`fixed top-0 right-0 h-full w-72 bg-white shadow-lg transform ${
+        className={`fixed top-0 right-0 h-full w-96 bg-white shadow-lg z-10 transform ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out md:hidden`}
       >

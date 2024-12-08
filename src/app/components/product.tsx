@@ -6,12 +6,12 @@ const Product = () =>{
         <div className="w-[1280px] mx-auto">
           <h1 className="text-4xl">Our popular products</h1>
         </div>
-        <div className="flex items-center justify-between w-[1280px] h-[573px] mx-auto">
+        <div className="flex items-center justify-between w-[1280px] h-[573px] mx-auto overflow-x-hidden">
           <div className="w-[630px] h-[462px]">
             <div className="w-[630px] h-[375px]">
               <Image
                 src={"/Large.png"}
-                alt="hero chair pic"
+                alt="sofa pic"
                 height={1000}
                 width={1000}
                 className="h-full"
@@ -41,7 +41,7 @@ const Product = () =>{
             <div className="w-[305px] h-[375px]">
               <Image
                 src={"/chair.png"}
-                alt="hero chair pic"
+                alt="chair pic"
                 height={1000}
                 width={1000}
                 className="h-full"
