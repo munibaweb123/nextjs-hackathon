@@ -19,13 +19,13 @@ const Header = () => {
 
         {/* Right Side on desktop: Shopping Cart and Profile icons */}
         <div className="hidden md:flex items-center gap-x-4">
-          <FaShoppingCart size={20} />
+        <Link href={"/cart"}>  <FaShoppingCart size={20} /></Link>
           <MdPerson size={20} />
         </div>
 
         {/* Mobile Menu Button (visible only on mobile) */}
         <button
-          className="md:hidden z-50"
+          className="md:hidden z-10"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -67,11 +67,11 @@ const Header = () => {
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out md:hidden`}
       >
-        <ul className="flex flex-col gap-y-4 p-8 mt-16">
+        <ul className="flex flex-col gap-y-4 p-8 mt-5">
           <li><Link href={"/"}>Home</Link></li>
-          <li><Link href={"/contact"}>Contact</Link></li>
+          <li><Link href={"/cart"}>Cart</Link></li>
           <li><Link href={"/about"}>About</Link></li>
-          <li><Link href={"/signup"}>Signup</Link></li>
+          <li><Link href={"/product"}>Product</Link></li>
         </ul>
       </nav>
     </div>
