@@ -27,7 +27,7 @@ const footer = () => {
           <li className='text-lg md:text-xl'>Best Sellers</li>
           <li className='text-lg md:text-xl'>Recently viewed</li>
           <li className='text-lg md:text-xl'>Popular this week</li>
-          <li className='text-lg md:text-xl'><Link href={"/product"}>All products</Link></li>
+          <li className='text-lg md:text-xl'><Link href={"/productlisting"}>All products</Link></li>
         </ul>
         <ul className='space-y-4'>
           <li className='text-xl md:text-2xl'>Categories</li>
