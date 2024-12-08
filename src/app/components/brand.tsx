@@ -18,7 +18,7 @@ const Brand = () =>{
           {/* Image Section */}
           <div className="w-full md:w-[720px] md:h-[603px]">
             <Image
-              src="/image.png"
+              src="/Image.png"
               alt="Studio Image"
               height={1000}
               width={1000}

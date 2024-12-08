@@ -10,7 +10,7 @@ const Product = () =>{
           <div className="w-[630px] h-[462px]">
             <div className="w-[630px] h-[375px]">
               <Image
-                src={"/large.png"}
+                src={"/Large.png"}
                 alt="hero chair pic"
                 height={1000}
                 width={1000}
