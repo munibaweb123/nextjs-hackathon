@@ -43,6 +43,14 @@ const productListing =()=>{
           <option value="brand">brand1</option>
           
         </select>
+
+        <p>sorted by:</p>
+
+        <select className=' border-none justify-end'>
+          <option value="date">Date added</option>
+          <option value="date">9/12/2024</option>
+          
+        </select>
             </div>
 
             <Ceramics/>
