@@ -8,6 +8,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        clash: ['Clash Display', 'sans-serif'], // Add Clash Display
+        satoshi: ['Satoshi', 'sans-serif'],
+      },
+     
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
