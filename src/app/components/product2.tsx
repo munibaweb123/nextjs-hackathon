@@ -2,18 +2,18 @@ import Image from "next/image"
 
 const Product2 = () =>{
     return(
-        <div className="max-w-[1440px] h-[759px] mx-auto block md:flex justify-center items-center">
-            <div className="w-[721px] h-[759px]">
+        <div className="max-w-[1440px]  md:h-[759px] mx-auto grid grid-cols-1 md:grid-cols-1 h-[1055px]">
+            <div className="w-[390px] md:w-[721px] h-[380px] md:h-[759px]">
                 <Image src={"/chair2.png"} alt="chair" width={1000} height={1000}/>
             </div>
-            <div className="w-[721px] h-[759px] flex-col justify-center items-center">
-               <div className="w-[602px] h-[657px] p-10">
+            <div className="w-[390px] md:w-[721px] h-[380px] md:h-[759px] flex-col justify-center items-center">
+               <div className="w-[602px] h-[657px] md:p-10 p-2">
                 <div className="w-[281px] h-[89px]">
                 <h2 className="text-4xl">The Dandy Chair</h2>
                 <p>£250</p>
                 </div>
                 
-                <div className="space-y-4">
+                <div className="space-y-4 w-[342px] h-[193px]">
                 <h3>description</h3>
                     <p>A timeless design, with premium materials features as one of our most popular and iconic pieces. The dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.</p>
                     <ul className="list-disc pl-5 space-y-2">
