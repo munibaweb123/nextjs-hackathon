@@ -43,19 +43,19 @@ const Header = () => {
               <Link href={"#ceramics"}>Ceramics</Link>
             </li>
             <li>
-              <Link href={"/about"}>Tables</Link>
+              <Link href={"/"}>Tables</Link>
             </li>
             <li>
-              <Link href={"/signup"}>Chairs</Link>
+              <Link href={"/"}>Chairs</Link>
             </li>
             <li>
-              <Link href={"/signup"}>Crockery</Link>
+              <Link href={"/"}>Crockery</Link>
             </li>
             <li>
-              <Link href={"/signup"}>Tableware</Link>
+              <Link href={"/"}>Tableware</Link>
             </li>
             <li>
-              <Link href={"/signup"}>Cutlery</Link>
+              <Link href={"/"}>Cutlery</Link>
             </li>
           </ul>
         </nav>
