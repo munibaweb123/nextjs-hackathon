@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { FaCheck, FaCreditCard, FaRecycle, FaTruck } from "react-icons/fa"
 
 const Hero = () => {
@@ -10,7 +11,7 @@ const Hero = () => {
    <h1 className="text-3xl text-white">
     The furniture brand for the future, with timeless designs
     </h1>
-   <button className="bg-[#4E4D93] w-[170px] h-[56px] text-[#f9f9f9] md:bottom-0 absolute">View collection</button>
+   <button className="bg-[#4E4D93] w-[170px] h-[56px] text-[#f9f9f9] md:bottom-0 absolute"><Link href={"/product"}>View collection</Link></button>
    </div>
    <div className="p-10 bottom-20 absolute md:w-[602px] text-white h-[81px]">
     <p>A new era in eco friendly furniture with Avelon, the French luxury retail brand

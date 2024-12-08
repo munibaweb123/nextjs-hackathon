@@ -1,4 +1,5 @@
 
+import Link from 'next/link';
 import React from 'react'
 import { FaFacebook, FaInstagram, FaLinkedin, FaPinterest, FaSkype, FaTwitter } from 'react-icons/fa';
 
@@ -40,7 +41,7 @@ const footer = () => {
 
         <ul className='space-y-4'>
           <li className='text-xl md:text-2xl'>Our company</li>
-          <li className='text-lg md:text-xl'>About us</li>
+          <li className='text-lg md:text-xl'><Link href={"/about"}>About us</Link></li>
           <li className='text-lg md:text-xl'>Vacancies</li>
           <li className='text-lg md:text-xl'>Contact us</li>
           <li className='text-lg md:text-xl'>Privacy</li>
