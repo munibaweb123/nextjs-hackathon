@@ -56,10 +56,12 @@ const productListing =()=>{
         </select>
             </div>
 
-            <Ceramics/>
+          <div className="w-[1280px] mx-auto">
+          <Ceramics/>
             <Ceramics2/>
             <Ceramics/>
 
+          </div>
             <div className="flex justify-center items-center">
             <button className="w-[192px] h-[56px] text-[#2A254B] bg-[#f9f9f9]">View collection</button>
 
