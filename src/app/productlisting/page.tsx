@@ -56,7 +56,7 @@ const productListing =()=>{
         </select>
             </div>
 
-          <div className="w-[1280px] mx-auto">
+          <div className="md:w-[1280px] mx-auto">
           <Ceramics/>
             <Ceramics2/>
             <Ceramics/>
