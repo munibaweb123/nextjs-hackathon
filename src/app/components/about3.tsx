@@ -6,7 +6,7 @@ const About3 = () =>{
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
     <div className="w-[390px] md:w-[720px] h-[358px]  md:h-[603px]">
-            <Image src={"/image3.png"} alt="image" height={1000} width={1000} className="w-full h-full"/>
+            <Image src={"/Image3.png"} alt="image" height={1000} width={1000} className="w-full h-full"/>
         </div>
     <div className="w-[390px] md:w-[720px] h-[358px] md:h-[603px] bg-[#f9f9f9] text-[#2A254B] relative">
             <div className="w-[342px] md:w-[536px] h-[264px] md:h-[225px] md:p-10 space-y-5">

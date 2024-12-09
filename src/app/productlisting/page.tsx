@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Ceramics from "../components/ceramics"
+import Ceramics2 from "../components/ceramics2"
 
 const productListing =()=>{
     return(
@@ -8,8 +9,9 @@ const productListing =()=>{
                 <Image src={"/productlist.png"} alt="product cover picture" height={1000} width={1000} className="w-full h-full"/>
 
             </div>
-            <div className="md:w-[1440px] h-[64px] flex items-center justify-evenly">
-            <select className=' border-none justify-end'>
+            <div className="md:w-[1440px] h-[64px] md:flex items-center justify-evenly">
+           <div className="md:flex justify-evenly items-center">
+           <select className=' border-none justify-end'>
           <option value="Category">Category</option>
           <option value="Crockery">Crockery</option>
           <option value="Furniture">Furniture</option>
@@ -43,6 +45,7 @@ const productListing =()=>{
           <option value="brand">brand1</option>
           
         </select>
+           </div>
 
         <p>sorted by:</p>
 
@@ -54,6 +57,14 @@ const productListing =()=>{
             </div>
 
             <Ceramics/>
+            <Ceramics2/>
+            <Ceramics/>
+
+            <div className="flex justify-center items-center">
+            <button className="w-[192px] h-[56px] text-[#2A254B] bg-[#f9f9f9]">View collection</button>
+
+            </div>
+            
 
         </div>
     )

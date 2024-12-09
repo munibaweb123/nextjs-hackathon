@@ -10,7 +10,15 @@ export default function Home() {
    <div className="max-w-[1440px] mx-auto font-satoshi">
     <Hero/>
     <Ceramics/>
+    <div className="flex items-center justify-center">
+            <button className="w-[192px] h-[56px] text-[#2A254B] bg-[#f9f9f9]">View collection</button>
+
+            </div>
     <Product/>
+    <div className="flex items-center justify-center">
+            <button className="w-[192px] h-[56px] text-[#2A254B] bg-[#f9f9f9]">View collection</button>
+
+            </div>
     <Benefits/>
     <Brand/>
    </div>
