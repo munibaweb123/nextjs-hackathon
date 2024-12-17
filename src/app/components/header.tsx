@@ -11,15 +11,14 @@ const Header = () => {
     <div className="h-[132px] max-w-[1440px] mx-auto">
       {/* Main header container */}
       <div className="flex justify-between items-center border-b-2 px-4 py-2 md:px-10">
-        
-       
-          <FaSearch size={20} />
-          <h1 className="text-2xl font-clash">Avion</h1>
-    
+        <FaSearch size={20} />
+        <h1 className="text-2xl font-clash">Avion</h1>
 
         {/* Right Side on desktop: Shopping Cart and Profile icons */}
         <div className="hidden md:flex items-center gap-x-4">
-        <Link href={"/cart"}>  <FaShoppingCart size={20} /></Link>
+          <Link href={"/cart"}>
+            <FaShoppingCart size={20} />
+          </Link>
           <MdPerson size={20} />
         </div>
 
@@ -63,16 +62,44 @@ const Header = () => {
 
       {/* Mobile Navigation (visible only on mobile) */}
       <nav
-        className={`fixed top-0 right-0 h-full w-96 bg-white shadow-lg z-10 transform ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out md:hidden`}
+        className={`absolute top-0 left-0 w-full h-full bg-white z-10 p-8 shadow-lg md:hidden transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "block" : "hidden"
+        }`}
       >
-        <ul className="flex flex-col gap-y-4 p-8 mt-5">
-          <li><Link href={"/"}>Home</Link></li>
-          <li><Link href={"/cart"}>Cart</Link></li>
-          <li><Link href={"/about"}>About</Link></li>
-          <li><Link href={"/product"}>Product</Link></li>
-          <li><Link href={"/productlisting"}>Product Listing</Link></li>
+        {/* Close Button */}
+        <button
+          className="absolute top-4 right-4"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <FaTimes size={24} />
+        </button>
+
+        <ul className="flex flex-col gap-y-6 mt-10 text-lg">
+          <li>
+            <Link href={"/"} onClick={() => setIsMenuOpen(false)}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href={"/cart"} onClick={() => setIsMenuOpen(false)}>
+              Cart
+            </Link>
+          </li>
+          <li>
+            <Link href={"/about"} onClick={() => setIsMenuOpen(false)}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href={"/product"} onClick={() => setIsMenuOpen(false)}>
+              Product
+            </Link>
+          </li>
+          <li>
+            <Link href={"/productlisting"} onClick={() => setIsMenuOpen(false)}>
+              Product Listing
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>
