@@ -9,7 +9,7 @@ const Ceramics = () => {
         <div className="w-[1280px] mx-auto">
           <h1 className="text-4xl">New Ceramics</h1>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:w-[1280px] w-screen mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:w-[1280px] w-screen mx-auto p-2 m-2">
           <div className="md:w-[305px] w-full h-auto md:h-[462px]">
             <div className="md:w-[305px] w-full h-auto md:h-[375px]">
               <Image

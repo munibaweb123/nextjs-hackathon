@@ -1,12 +1,18 @@
-const About1 = () =>{
-    return(
-        <div className="md:w-[1440px] md:h-[277px] w-[390px] h-[385px] mx-auto block md:flex items-center justify-evenly">
-
-            <h3 className="text-2xl md:text-4xl w-[342px] md:w-[704px] h-[100px] ">A brand built on the love of craftmanship,
-            quality and outstanding customer service</h3>
-            <button className="w-[192px] h-[56px] text-[#2A254B] bg-[#f9f9f9]">View our products</button>
-
-        </div>
-    )
-}
-export default About1
+const About1 = () => {
+    return (
+      <div className="w-full h-auto mx-auto block md:flex items-center justify-evenly px-4 md:px-8 py-8 md:py-16">
+        {/* Left Text Section */}
+        <h3 className="text-xl md:text-4xl font-medium text-center md:text-left w-full md:w-[704px] h-auto mb-4 md:mb-0">
+          A brand built on the love of craftsmanship, quality, and outstanding customer service
+        </h3>
+  
+        {/* Button Section */}
+        <button className="w-full md:w-[192px] h-[56px] text-[#2A254B] bg-[#f9f9f9] rounded-md mt-4 md:mt-0 mx-auto md:mx-0">
+          View our products
+        </button>
+      </div>
+    );
+  };
+  
+  export default About1;
+  

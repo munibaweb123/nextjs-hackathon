@@ -43,16 +43,16 @@ const Header = () => {
               <Link href={"#ceramics"}>Ceramics</Link>
             </li>
             <li>
-              <Link href={"/"}>Tables</Link>
+              <Link href={"/about"}>Tables</Link>
             </li>
             <li>
-              <Link href={"/"}>Chairs</Link>
+              <Link href={"/cart"}>Chairs</Link>
             </li>
             <li>
-              <Link href={"/"}>Crockery</Link>
+              <Link href={"/product"}>Crockery</Link>
             </li>
             <li>
-              <Link href={"/"}>Tableware</Link>
+              <Link href={"/productlisting"}>Tableware</Link>
             </li>
             <li>
               <Link href={"/"}>Cutlery</Link>
@@ -72,6 +72,7 @@ const Header = () => {
           <li><Link href={"/cart"}>Cart</Link></li>
           <li><Link href={"/about"}>About</Link></li>
           <li><Link href={"/product"}>Product</Link></li>
+          <li><Link href={"/productlisting"}>Product Listing</Link></li>
         </ul>
       </nav>
     </div>

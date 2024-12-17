@@ -63,7 +63,7 @@ const productListing =()=>{
 
           </div>
             <div className="flex justify-center items-center">
-            <button className="w-[192px] h-[56px] text-[#2A254B] bg-[#f9f9f9]">View collection</button>
+            <button className="md:w-[192px] h-[56px] text-[#2A254B] bg-[#f9f9f9] w-full">View collection</button>
 
             </div>
             

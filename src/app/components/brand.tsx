@@ -2,8 +2,8 @@ import Image from "next/image"
 
 const Brand = () =>{
     return(
-        <div className="max-w-[1440px] mx-auto py-10">
-        <div className="block md:flex justify-between items-center space-y-8 md:space-y-0 w-full">
+        <div className="max-w-[1440px] mx-auto ">
+        <div className="flex-col md:flex-row md:flex justify-between items-center space-y-8 md:space-y-0 w-full">
           {/* Text Section */}
           <div className="w-full md:w-[720px] p-4 md:p-10 space-y-6">
             <h2 className="text-2xl md:text-3xl font-semibold leading-tight">
@@ -16,7 +16,7 @@ const Brand = () =>{
           </div>
 
           {/* Image Section */}
-          <div className="w-full md:w-[720px] md:h-[603px]">
+          <div className="w-full md:w-[720px] md:h-[603px] p-4">
             <Image
               src="/Image.png"
               alt="Studio Image"

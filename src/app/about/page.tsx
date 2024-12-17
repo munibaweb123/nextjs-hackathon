@@ -6,7 +6,7 @@ import Brand from "../components/brand";
 
 const about = ()=>{
     return(
-        <div>
+        <div className="max-w-[1440px] mx-auto">
             <About1/>
             <About2/>
             <About3/>
