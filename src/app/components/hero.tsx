@@ -26,7 +26,7 @@ using modern web technologies.</p>
 <div className="pt-10 pb-10">
     <h2 className="text-2xl text-center p-10">What makes our brand different</h2>
 
-    <div className="block md:flex justify-between items-center">
+    <div className="flex flex-col md:flex-row p-2 justify-between items-center">
         <div className="w-[270px] h-auto md:h-[124px]">
             <FaTruck size={20}/>
             <h2 className="text-xl">Next day as standard</h2>
