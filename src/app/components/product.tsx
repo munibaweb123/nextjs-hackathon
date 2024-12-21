@@ -134,17 +134,7 @@ const Product = () => {
   </CarouselContent>
 </Carousel>
 
-      {/* Scrollable container for products */}
-      <div className="flex items-center justify-start overflow-x-auto space-x-4 px-4">
-        {/* Product 1 */}
-      
-
-        {/* Product 2 */}
-   
-
-        {/* Product 3 */}
     
-      </div>
     </div>
   );
 };
