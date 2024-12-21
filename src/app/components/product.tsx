@@ -73,8 +73,8 @@ const Product = () => {
             />
           </div>
           <div className="w-[154px] h-[63px] mt-4">
-            <p>The Dandy chair</p>
-            <p>£250</p>
+            <p>The Vase</p>
+            <p>£25</p>
           </div>
         </Card>
     </CarouselItem>
@@ -90,8 +90,8 @@ const Product = () => {
             />
           </div>
           <div className="w-[154px] h-[63px] mt-4">
-            <p>The Dandy chair</p>
-            <p>£250</p>
+            <p>The Vase</p>
+            <p>£25</p>
           </div>
         </Card>
     </CarouselItem>
@@ -107,8 +107,8 @@ const Product = () => {
             />
           </div>
           <div className="w-[154px] h-[63px] mt-4">
-            <p>The Dandy chair</p>
-            <p>£250</p>
+            <p>The Lamp</p>
+            <p>£50</p>
           </div>
         </Card>
     </CarouselItem>
@@ -124,8 +124,8 @@ const Product = () => {
             />
           </div>
           <div className="w-[154px] h-[63px] mt-4">
-            <p>The Dandy chair</p>
-            <p>£250</p>
+            <p>The Lamp</p>
+            <p>£50</p>
           </div>
         </Card>
     </CarouselItem>
