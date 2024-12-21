@@ -5,7 +5,7 @@ import { FaCheck, FaCreditCard, FaRecycle, FaTruck } from "react-icons/fa"
 const Hero = () => {
   return (
    
-    <div className="max-w-[1280px] mx-auto">
+    <div className="md:max-w-[1280px] w-full mx-auto">
 <div className="md:w-[1280px] h-screen md:h-[584px] relative bg-[#2A254B]">
    <div className="p-10 md:w-[513px] h-[187px] relative">
    <h1 className="text-3xl text-white">

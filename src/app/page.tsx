@@ -7,7 +7,7 @@ import Product from "./components/product";
 
 export default function Home() {
   return (
-   <div className="max-w-[1440px] mx-auto font-satoshi">
+   <div className="md:max-w-[1440px] max-w-screen overflow-hidden mx-auto font-satoshi">
     <Hero/>
     <Ceramics/>
     <div className="flex items-center justify-center">

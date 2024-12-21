@@ -6,7 +6,7 @@ import Product2 from "../components/product2"
 
 const product = () =>{
     return(
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1440px] mx-auto overflow-hidden">
  <Product2/>         
 <Ceramics/>
 <div className="flex items-center justify-center">

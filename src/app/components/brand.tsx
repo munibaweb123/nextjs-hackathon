@@ -2,7 +2,7 @@ import Image from "next/image"
 
 const Brand = () =>{
     return(
-        <div className="max-w-[1440px] mx-auto ">
+        <div className="md:max-w-[1440px] w-full mx-auto ">
         <div className="flex-col md:flex-row md:flex justify-between items-center space-y-8 md:space-y-0 w-full">
           {/* Text Section */}
           <div className="w-full md:w-[720px] p-4 md:p-10 space-y-6">

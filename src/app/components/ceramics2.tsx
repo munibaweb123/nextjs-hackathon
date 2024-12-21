@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Ceramics2 = () => {
   return (
-    <div className="max-w-[1440px] h-[761px]">
+    <div className="md:max-w-[1440px] w-full h-[761px]">
       {/* New Ceramics Section */}
       <div>
         <div className="w-[1280px] mx-auto">

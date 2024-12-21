@@ -4,7 +4,7 @@ import Ceramics2 from "../components/ceramics2"
 
 const productListing =()=>{
     return(
-        <div className="md:w-[1440px] mx-auto">
+        <div className="md:w-[1440px] mx-auto overflow-hidden">
             <div className="md:w-[1440px] h-[209px]">
                 <Image src={"/productlist.png"} alt="product cover picture" height={1000} width={1000} className="w-full h-full"/>
 

@@ -8,7 +8,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="h-[132px] max-w-[1440px] mx-auto">
+    <div className="h-[132px] md:max-w-[1440px] w-full mx-auto">
       {/* Main header container */}
       <div className="flex justify-between items-center border-b-2 px-4 py-2 md:px-10">
         <FaSearch size={20} />
@@ -24,10 +24,10 @@ const Header = () => {
 
         {/* Mobile Menu Button (visible only on mobile) */}
         <button
-          className="md:hidden z-20"
+          className={`md:hidden z-20 ${isMenuOpen ? "hidden" : "block"}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          <FaBars size={24} />
         </button>
       </div>
 

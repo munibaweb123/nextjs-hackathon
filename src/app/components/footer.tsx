@@ -19,7 +19,7 @@ const footer = () => {
         </ul>
         <ul className='space-y-4'>
           <li className='text-xl md:text-2xl'>Social links</li>
-          <li className='flex items-center gap-x-2'><FaLinkedin size={20}/> <FaFacebook size={20}/> <FaInstagram size={20}/> <FaSkype size={20}/> <FaTwitter/> <FaPinterest/></li>
+          <li className='grid grid-cols-3 md:grid-cols-6 gap-y-2'><FaLinkedin size={20}/> <FaFacebook size={20}/> <FaInstagram size={20}/> <FaSkype size={20}/> <FaTwitter/> <FaPinterest/></li>
         </ul>
         <ul className='space-y-4'>
           <li className='text-xl md:text-2xl'>Menu</li>
@@ -29,7 +29,7 @@ const footer = () => {
           <li className='text-lg md:text-xl'>Popular this week</li>
           <li className='text-lg md:text-xl'><Link href={"/productlisting"}>All products</Link></li>
         </ul>
-        <ul className='space-y-4'>
+        <ul className='space-y-4 hidden md:block'>
           <li className='text-xl md:text-2xl'>Categories</li>
           <li className='text-lg md:text-xl'>Crockery</li>
           <li className='text-lg md:text-xl'>Furniture</li>
