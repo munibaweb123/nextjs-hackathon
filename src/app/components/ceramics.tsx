@@ -1,82 +1,76 @@
+import client from "@/sanity/lib/client";
 import Image from "next/image";
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
+import Link from "next/link";
 
+interface Product {
+  image: string;
+  name: string;
+  price: number;
+  description: string;
+  slug: { current: string }; // Correct slug structure from Sanity
+  price_id: string;
+  tags: string[];
+}
 
-const Ceramics = () => {
+const Ceramics = async () => {
+  // Sanity query to fetch products with the 'new ceramics' tag
+  const query = `*[_type == 'product' && 'new ceramics' in tags]{
+    "image": image.asset->url,
+    name,
+    price,
+    description,
+    slug, // Fetch slug object
+    price_id,
+    tags
+  }`;
+
+  const res: Product[] = await client.fetch(query);
+
   return (
-    <div className="md:max-w-[1440px] w-full h-[761px]">
+    <div className="md:max-w-[1440px] w-full h-auto mx-auto">
       {/* New Ceramics Section */}
       <div>
         <div className="w-[1280px] mx-auto">
-          <h1 className="text-4xl">New Ceramics</h1>
+          <h1 className="text-4xl my-8">New Ceramics</h1>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:w-[1280px] w-screen mx-auto p-2 m-2">
-          <div className="md:w-[305px] w-full h-auto md:h-[462px]">
-            <div className="md:w-[305px] w-full h-auto md:h-[375px]">
-              <Image
-                src={"/right-hero.png"}
-                alt="hero chair pic"
-                height={1000}
-                width={1000}
-                className="h-full"
-              />
-            </div>
-            <div className="w-[154px] h-[63px]">
-              <p>The Dandy chair</p>
-              <p>£250</p>
-            </div>
-          </div>
-          <div className="md:w-[305px] w-full h-auto md:h-[462px]">
-            <div className="md:w-[305px] w-full h-auto md:h-[375px]">
-              <Image
-                src={"/ceramic2.png"}
-                alt="hero chair pic"
-                height={1000}
-                width={1000}
-                className="h-full"
-              />
-            </div>
-            <div className="w-[154px] h-[63px]">
-              <p>Rustic Vase Set</p>
-              <p>£155</p>
-            </div>
-          </div>
-          <div className="md:w-[305px] w-full h-auto md:h-[462px]">
-            <div className="md:w-[305px] w-full h-auto md:h-[375px]">
-              <Image
-                src={"/ceramic1.png"}
-                alt="hero chair pic"
-                height={1000}
-                width={1000}
-                className="h-full"
-              />
-            </div>
-            <div className="w-[154px] h-[63px]">
-              <p>The Silky Vase</p>
-              <p>£125</p>
-            </div>
-          </div>
-          <div className="md:w-[305px] w-full h-auto md:h-[462px]">
-            <div className="md:w-[305px] w-full h-auto md:h-[375px]">
-              <Image
-                src={"/ceramic3.png"}
-                alt="hero chair pic"
-                height={1000}
-                width={1000}
-                className="h-full"
-              />
-            </div>
-            <div className="w-[154px] h-[63px]">
-              <p>The Lucy Lamp</p>
-              <p>£399</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-   
-    
+        {/* Carousel Container */}
+        <Carousel className="w-full max-w-full">
+          <CarouselContent>
+            {/* Map through the products */}
+            {res.map((product: Product, index: number) => (
+              <CarouselItem
+                key={index}
+                className="md:basis-1/2 lg:basis-1/4"
+              >
+                <Card className="w-full">
+                  <CardContent className="flex flex-col items-center justify-center">
+                    <CardHeader>
+                      <Link href={`/product/${product.slug.current}`}>
+                        <Image
+                          src={product.image || "/product1.png"}
+                          alt={product.name}
+                          height={1000}
+                          width={1000}
+                          className="h-full w-full object-cover cursor-pointer"
+                        />
+                      </Link>
+                    </CardHeader>
+                    <CardFooter className="flex items-center justify-between w-full h-[63px]">
+                      <p className="font-bold text-2xl">{product.name}</p>
+                      <p>£{product.price}</p>
+                    </CardFooter>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </div>
     </div>
   );
 };
 
-export default Ceramics
+export default Ceramics;

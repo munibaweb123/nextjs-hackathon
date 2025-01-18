@@ -1,11 +1,15 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { MdPerson } from "react-icons/md";
+import { Button } from "./ui/button";
+import { ShoppingBag } from "lucide-react";
+import { useShoppingCart } from "use-shopping-cart";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {handleCartClick} = useShoppingCart()
 
   return (
     <div className="h-[132px] md:max-w-[1440px] w-full mx-auto">
@@ -16,9 +20,13 @@ const Header = () => {
 
         {/* Right Side on desktop: Shopping Cart and Profile icons */}
         <div className="hidden md:flex items-center gap-x-4">
-          <Link href={"/cart"}>
+          {/* <Link href={"/cart"}>
             <FaShoppingCart size={20} />
-          </Link>
+          </Link> */}
+          <Button variant={"outline"}
+          onClick={()=>handleCartClick()}>
+            <ShoppingBag/>
+          </Button>
           <MdPerson size={20} />
         </div>
 
@@ -54,7 +62,7 @@ const Header = () => {
               <Link href={"/productlisting"}>Tableware</Link>
             </li>
             <li>
-              <Link href={"/"}>Cutlery</Link>
+              <Link href={"/shipment"}>shipment</Link>
             </li>
           </ul>
         </nav>

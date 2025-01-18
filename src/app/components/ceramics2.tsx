@@ -1,82 +1,72 @@
+import client from "@/sanity/lib/client";
 import Image from "next/image";
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 
 
-const Ceramics2 = () => {
+
+
+
+
+interface Product {
+  image: string;
+  name: string;
+  price: number;
+  description:string;
+  id:number;
+  price_id:string;
+  tags:string;
+}
+
+const Ceramics = async () => {
+  const query = `*[_type=='product' && 'new products' in tags]{"image":image.asset->url,name,price,description,id,price_id,tags}`;
+  const res = await client.fetch(query);
+
   return (
-    <div className="md:max-w-[1440px] w-full h-[761px]">
+    <div className="md:max-w-[1440px] w-full h-auto mx-auto">
       {/* New Ceramics Section */}
       <div>
         <div className="w-[1280px] mx-auto">
-          <h1 className="text-4xl">New Ceramics</h1>
+          <h1 className="text-4xl my-8">New Products</h1>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:w-[1280px] w-screen mx-auto p-2 m-2">
-          <div className="md:w-[305px] w-full h-auto md:h-[462px]">
-            <div className="md:w-[305px] w-full h-auto md:h-[375px]">
-              <Image
-                src={"/ceramic4.png"}
-                alt="hero chair pic"
-                height={1000}
-                width={1000}
-                className="h-full"
-              />
-            </div>
-            <div className="w-[154px] h-[63px]">
-              <p>The Dandy chair</p>
-              <p>£250</p>
-            </div>
-          </div>
-          <div className="md:w-[305px] w-full h-auto md:h-[462px]">
-            <div className="md:w-[305px] w-full h-auto md:h-[375px]">
-              <Image
-                src={"/ceramic5.png"}
-                alt="hero chair pic"
-                height={1000}
-                width={1000}
-                className="h-full"
-              />
-            </div>
-            <div className="w-[154px] h-[63px]">
-              <p>Rustic Vase Set</p>
-              <p>£155</p>
-            </div>
-          </div>
-          <div className="md:w-[305px] w-full h-auto md:h-[462px]">
-            <div className="md:w-[305px] w-full h-auto md:h-[375px]">
-              <Image
-                src={"/ceramic6.png"}
-                alt="hero chair pic"
-                height={1000}
-                width={1000}
-                className="h-full"
-              />
-            </div>
-            <div className="w-[154px] h-[63px]">
-              <p>The Silky Vase</p>
-              <p>£125</p>
-            </div>
-          </div>
-          <div className="md:w-[305px] w-full h-auto md:h-[462px]">
-            <div className="md:w-[305px] w-full h-auto md:h-[375px]">
-              <Image
-                src={"/ceramic7.png"}
-                alt="hero chair pic"
-                height={1000}
-                width={1000}
-                className="h-full"
-              />
-            </div>
-            <div className="w-[154px] h-[63px]">
-              <p>The Lucy Lamp</p>
-              <p>£399</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-   
-    
+        {/* Carousel Container */}
+        <Carousel className="w-full max-w-full">
+          <CarouselContent >
+            {/* Map through the products */}
+            {res.map((product: Product, index: number) => (
+              <CarouselItem
+                key={index}
+                className=" md:basis-1/2 lg:basis-1/4"
+              >
+                
+                  <Card className=" w-full ">
+                    <CardContent className="flex flex-col items-center justify-center">
+                      <CardHeader >
+                        <Image
+                          src={product.image || "/product1.png"}
+                          alt={product.name}
+                          height={1000}
+                          width={1000}
+                          className="h-full w-full object-cover"
+                        />
+                     
+                      </CardHeader>
+                     
+                      <CardFooter className="flex items-center justify-between w-full h-[63px] ">
+                        <p className="font-bold text-2xl">{product.name}</p>
+                        <p>£{product.price}</p>
+                      </CardFooter>
+                    </CardContent>
+                  </Card>
+                
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </div>
     </div>
   );
 };
 
-export default Ceramics2
+export default Ceramics;
