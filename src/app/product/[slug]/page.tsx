@@ -14,7 +14,6 @@ interface Product {
   price: number;
   description: string;
   slug: string;
-  sizes: string;
   dimensions: {
     height: string;
     width: string;
@@ -22,21 +21,40 @@ interface Product {
   };
 }
 
-const ProductDetails =async({ params }: { params:Promise< {slug: string }> }) =>{
-  const { slug } = await params; // Fix: Directly destructure id from params
+const ProductDetails = async ({ params }: { params:Promise<{slug:string}> }) => {
+  const { slug } =await params;
 
-  // Query to fetch the product details
+  // Query to fetch the current product details
   const query = `*[_type == 'product' && slug.current == $slug][0]{
-     name, price, description, sizes, "image": image.asset->url, price_id, dimensions
+    _id,
+    name,
+    price,
+    description,
+    "image": image.asset->url,
+    price_id,
+    dimensions {
+      height,
+      width,
+      depth
+    },
+    "slug": slug.current
   }`;
 
-  // Fetch product data from Sanity
+  // Query to fetch the next and previous products based on their slug
+  const paginationQuery = `{
+    "previous": *[_type == "product" && slug.current < $slug] | order(slug.current desc)[0]{ "slug": slug.current },
+    "next": *[_type == "product" && slug.current > $slug] | order(slug.current asc)[0]{ "slug": slug.current }
+  }`;
+
+  // Fetch the product data
   const product: Product | null = await client.fetch(query, { slug });
 
   if (!product) {
-    // If no product found, show 404 page
     notFound();
   }
+
+  // Fetch the pagination data using the product's slug
+  const pagination = await client.fetch(paginationQuery, { slug });
 
   return (
     <div className="md:max-w-[1440px] mx-auto">
@@ -86,9 +104,9 @@ const ProductDetails =async({ params }: { params:Promise< {slug: string }> }) =>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="px-4 py-2 border">{product.dimensions.height || "N/A"}</td>
-                      <td className="px-4 py-2 border">{product.dimensions.width || "N/A"}</td>
-                      <td className="px-4 py-2 border">{product.dimensions.depth || "N/A"}</td>
+                      <td className="px-4 py-2 border">{product.dimensions.height }</td>
+                      <td className="px-4 py-2 border">{product.dimensions.width }</td>
+                      <td className="px-4 py-2 border">{product.dimensions.depth }</td>
                     </tr>
                   </tbody>
                 </table>
@@ -116,8 +134,28 @@ const ProductDetails =async({ params }: { params:Promise< {slug: string }> }) =>
         </div>
       </div>
 
+      {/* Pagination */}
+      <div className="flex justify-between items-center mt-10">
+        {pagination.previous?.slug && (
+          <a
+            href={`/product/${pagination.previous.slug}`}
+            className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded"
+          >
+            Previous
+          </a>
+        )}
+        {pagination.next?.slug && (
+          <a
+            href={`/product/${pagination.next.slug}`}
+            className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded"
+          >
+            Next
+          </a>
+        )}
+      </div>
+
       {/* Additional Components */}
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-12">
         <Ceramics />
         <div className="flex items-center justify-center">
           <button className="md:w-[192px] h-[56px] text-[#2A254B] bg-[#f9f9f9] m-2 w-full">

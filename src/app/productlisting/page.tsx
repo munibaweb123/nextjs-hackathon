@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Ceramics from "../components/ceramics"
-import Ceramics2 from "../components/ceramics2"
+import Category from "../components/category"
+
+
 
 const productListing =()=>{
     return(
@@ -11,14 +13,14 @@ const productListing =()=>{
             </div>
             <div className="md:w-[1440px] h-[64px] md:flex items-center justify-evenly">
            <div className="md:flex justify-evenly items-center">
-           <select className=' border-none justify-end'>
+           {/* <select className=' border-none justify-end'>
           <option value="Category">Category</option>
           <option value="Crockery">Crockery</option>
           <option value="Furniture">Furniture</option>
           <option value="Homeware">Homeware</option>
           <option value="Plant pots">Plant pots</option>
           <option value="Chairs">Chairs</option>
-        </select>
+        </select> */}
 
 
         <select className=' border-none justify-end'>
@@ -58,7 +60,8 @@ const productListing =()=>{
 
           <div className="md:w-[1280px] mx-auto">
           <Ceramics/>
-            <Ceramics2/>
+          <Category/>
+            
             <Ceramics/>
 
           </div>
