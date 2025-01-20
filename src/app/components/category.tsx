@@ -54,7 +54,7 @@ const Ceramics = () => {
     const fetchProducts = async () => {
       try {
         const categoryFilter = selectedCategory
-        ? `&& references(*[_type == "category" && name == "${selectedCategory}"]._id)`
+        ? `&& references(*[_type == "category" && _id == "${selectedCategory}"]._id)`
         : "";
 
       const query = `*[_type == "product" ${categoryFilter}]{
@@ -89,7 +89,7 @@ const Ceramics = () => {
 >
   <option value="">All Categories</option>
   {categories.map((category) => (
-    <option key={category._id} value={category.slug.current}>
+    <option key={category._id} value={category._id}>
       {category.name}
     </option>
   ))}
