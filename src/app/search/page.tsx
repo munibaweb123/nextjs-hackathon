@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'; // This is the correct hook to use
 import client from '@/sanity/lib/client';
 import Image from 'next/image';
@@ -57,45 +57,46 @@ const SearchPage = () => {
   }, [searchQuery]); // Re-run when searchQuery changes
 
   return (
-    <div className="md:max-w-[1440px] w-full h-auto mx-auto">
-      {/* Search Results */}
-      <div>
-        <div className="w-[1280px] mx-auto">
-          <h1 className="text-4xl my-8">Search Results</h1>
-        </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="md:max-w-[1440px] w-full h-auto mx-auto">
+        {/* Search Results */}
+        <div>
+          <div className="w-[1280px] mx-auto">
+            <h1 className="text-4xl my-8">Search Results</h1>
+          </div>
 
-        {/* Grid of Products */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
-          {products.length > 0 ? (
-            products.map((product) => (
-              <Card key={product._id} className="w-full h-auto">
-                <CardContent className="flex flex-col items-center justify-center">
-                  <CardHeader>
-                    <Link href={`/product/${product.slug.current}`}>
-                      <Image
-                        src={product.image || '/product1.png'}
-                        alt={product.name}
-                        height={1000}
-                        width={1000}
-                        className="h-full w-full object-cover cursor-pointer"
-                      />
-                    </Link>
-                  </CardHeader>
+          {/* Grid of Products */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+            {products.length > 0 ? (
+              products.map((product) => (
+                <Card key={product._id} className="w-full">
+                  <CardContent className="flex flex-col items-center justify-center">
+                    <CardHeader>
+                      <Link href={`/product/${product.slug.current}`}>
+                        <Image
+                          src={product.image || '/product1.png'}
+                          alt={product.name}
+                          height={1000}
+                          width={1000}
+                          className="h-full w-full object-cover cursor-pointer"
+                        />
+                      </Link>
+                    </CardHeader>
 
-                  <CardFooter className="flex flex-col items-center justify-between w-full h-[63px]">
-                    <p className="font-bold text-2xl">{product.name}</p>
-                    <p>£{product.price}</p>
-                   
-                  </CardFooter>
-                </CardContent>
-              </Card>
-            ))
-          ) : (
-            <p>No products found for this search query.</p>
-          )}
+                    <CardFooter className="flex items-center justify-between w-full h-[63px]">
+                      <p className="font-bold text-2xl">{product.name}</p>
+                      <p>£{product.price}</p>
+                    </CardFooter>
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              <p>No products found for this search query.</p>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </Suspense>
   );
 };
 
