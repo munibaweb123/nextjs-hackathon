@@ -1,71 +1,102 @@
-import client from "@/sanity/lib/client";
-import ProductCard from "../components/product";
-import { groq } from "next-sanity";
+'use client';
 
-// Define Product interface
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation'; // This is the correct hook to use
+import client from '@/sanity/lib/client';
+import Image from 'next/image';
+import { Card, CardContent, CardFooter, CardHeader } from '../components/ui/card';
+import Link from 'next/link';
+
 interface Product {
   _id: string;
+  image: string;
   name: string;
-  description: string;
   price: number;
+  description: string;
   slug: { current: string };
-  imageUrl: string;
+  price_id: string;
+  tags: string;
 }
 
-// Define Props interface
-interface SearchParams {
-  query?: string | string[]; // Allow `query` to be a string, array, or undefined
-}
+const SearchPage = () => {
+  const searchParams = useSearchParams(); // Use searchParams to access URL query
+  const [products, setProducts] = useState<Product[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>(''); // Search query state
 
-export default async function SearchPage({
-  searchParams,
-}: {
-  searchParams: Promise<SearchParams>;
-}) {
-  // Extract and validate the `query` parameter
-  const query = (await searchParams).query;
+  // Get the query parameter from URL for the search term
+  useEffect(() => {
+    const query = searchParams.get('query') || ''; // Using searchParams to get query
+    setSearchQuery(query);
+  }, [searchParams]);
 
-  // Type guard to ensure `query` is a string
-  if (typeof query !== "string") {
-    return (
-      <div className="container mx-auto px-4 py-8 max-w-6xl min-h-screen">
-        <h1 className="text-2xl font-bold mb-6">Search Results</h1>
-        <p className="text-gray-500">No query provided or invalid query type.</p>
-      </div>
-    );
-  }
+  // Fetch products based on search query
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const query = `*[_type == "product" && (name match $searchQuery || description match $searchQuery)]{
+          _id,
+          "image": image.asset->url,
+          name,
+          price,
+          description,
+          slug,
+          price_id,
+          tags
+        }`;
 
-  // Define GROQ query
-  const sanityQuery = groq`*[_type == "product" && (name match $query || description match $query || categories[]->name match $query)]{
-    _id,
-    "slug": slug.current,
-    name,
-    description,
-    price,
-    "imageUrl": image.asset->url
-  }`;
+        const productsData: Product[] = await client.fetch(query, {
+          searchQuery, // Passing the search query to the GROQ query
+        });
+        setProducts(productsData);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
 
-  // Fetch data from Sanity
-  const params = { query };
-  const fetchedProducts: Product[] = await client.fetch(sanityQuery, {params});
+    fetchProducts();
+  }, [searchQuery]); // Re-run when searchQuery changes
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl min-h-screen">
-      <h1 className="text-2xl font-bold mb-6">
-        Search Results for &quot;{query || "All"}&quot;
-      </h1>
-
-      {fetchedProducts.length === 0 && (
-        <p className="text-gray-500">No products found.</p>
-      )}
-
-      {fetchedProducts.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {fetchedProducts.map((product) => (
-            <ProductCard key={product._id} product={product} />
-          ))}
+    <div className="md:max-w-[1440px] w-full h-auto mx-auto">
+      {/* Search Results */}
+      <div>
+        <div className="w-[1280px] mx-auto">
+          <h1 className="text-4xl my-8">Search Results</h1>
         </div>
-      )}
+
+        {/* Grid of Products */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+          {products.length > 0 ? (
+            products.map((product) => (
+              <Card key={product._id} className="w-full h-auto">
+                <CardContent className="flex flex-col items-center justify-center">
+                  <CardHeader>
+                    <Link href={`/product/${product.slug.current}`}>
+                      <Image
+                        src={product.image || '/product1.png'}
+                        alt={product.name}
+                        height={1000}
+                        width={1000}
+                        className="h-full w-full object-cover cursor-pointer"
+                      />
+                    </Link>
+                  </CardHeader>
+
+                  <CardFooter className="flex flex-col items-center justify-between w-full h-[63px]">
+                    <p className="font-bold text-2xl">{product.name}</p>
+                    <p>£{product.price}</p>
+                   
+                  </CardFooter>
+                </CardContent>
+              </Card>
+            ))
+          ) : (
+            <p>No products found for this search query.</p>
+          )}
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default SearchPage;
