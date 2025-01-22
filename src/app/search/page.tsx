@@ -41,9 +41,9 @@ const SearchPage = async ({ searchParams }: { searchParams: Promise<{ query: str
   }
 
   return (
-    <div className="md:max-w-[1440px] w-full h-auto mx-auto">
+    <div className="md:max-w-[1440px] w-full h-auto mx-auto overflow-x-hidden">
       <div className="w-[1280px] mx-auto">
-        <h1 className="text-4xl my-8">Search Results for: {searchQuery}</h1>
+        <h1 className="w-screen p-4 md:text-4xl my-8 text-2xl">Search Results for: {searchQuery}</h1>
       </div>
 
       {/* Grid of Products */}
