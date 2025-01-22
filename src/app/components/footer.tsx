@@ -9,7 +9,7 @@ const footer = () => {
         <div className='max-w-6xl mx-auto'>
         <div className='p-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 justify-evenly items-start md:items-center gap-8 py-10 border-b-2'>
         <ul className='space-y-4'>
-          <li className='text-2xl md:text-2xl '>Avion</li>
+          <li className='text-2xl md:text-2xl '>Muniba e-shop</li>
           <li className='text-xl md:text-xl'>21 New York Street</li>
           <li className='text-lg md:text-xl'>New York City</li>
           <li className='text-lg md:text-xl'>United States of America</li>

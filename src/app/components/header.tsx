@@ -17,7 +17,7 @@ const Header = () => {
       {/* Main header container */}
       <div className="flex justify-between items-center border-b-2 px-4 py-2 md:px-10">
         <SearchBar/>
-        <h1 className="text-2xl font-clash">Avion</h1>
+        <h1 className="text-2xl font-clash">Muniba e-shop</h1>
 
         {/* Right Side on desktop: Shopping Cart and Profile icons */}
         <div className="hidden md:flex items-center gap-x-4">
