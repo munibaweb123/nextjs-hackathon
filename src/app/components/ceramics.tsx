@@ -54,7 +54,7 @@ const Ceramics = async () => {
                           alt={product.name}
                           height={1000}
                           width={1000}
-                          className="h-full w-full object-cover cursor-pointer"
+                          className="h-full w-full object-cover cursor-pointer aspect-square"
                         />
                       </Link>
                     </CardHeader>

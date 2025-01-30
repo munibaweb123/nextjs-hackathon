@@ -5,9 +5,10 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import CartProvider from "./components/providers";
 import ShoppingCartModal from "./components/ShoppingCartModal";
-
-
-
+import {
+  ClerkProvider,
+ 
+} from '@clerk/nextjs'
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -26,22 +27,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-      <CartProvider>
-      <Header/>
-      <ShoppingCartModal/>
-      
-        {children}
-        <Footer/>
-      </CartProvider>
-      </body>
-    </html>
-  );
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+        <CartProvider>
+<Header/>
+<ShoppingCartModal/>
+         
+          {children}
+          <Footer/>
+          </CartProvider>
+        </body>
+      </html>
+
+    </ClerkProvider>
+  )
 }

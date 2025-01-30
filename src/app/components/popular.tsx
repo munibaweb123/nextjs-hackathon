@@ -46,15 +46,15 @@ const Popular = async () => {
                 className="md:basis-1/2 lg:basis-1/4"
               >
                 <Card className="w-full">
-                  <CardContent className="flex flex-col items-center justify-center">
-                    <CardHeader>
+                  <CardContent className="flex flex-col items-center justify-center ">
+                    <CardHeader >
                       <Link href={`/product/${product.slug.current}`}>
                         <Image
                           src={product.image || "/product1.png"}
                           alt={product.name}
                           height={1000}
                           width={1000}
-                          className="h-full w-full object-cover cursor-pointer"
+                          className="h-full w-full object-cover cursor-pointer aspect-square"
                         />
                       </Link>
                     </CardHeader>
