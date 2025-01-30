@@ -21,8 +21,8 @@ interface Product {
   };
 }
 
-const ProductDetails = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params;
+const ProductDetails = async ({ params }: { params:Promise<{slug:string}> }) => {
+  const { slug } =await params;
 
   // Query to fetch the current product details
   const query = `*[_type == 'product' && slug.current == $slug][0]{
@@ -57,72 +57,79 @@ const ProductDetails = async ({ params }: { params: { slug: string } }) => {
   const pagination = await client.fetch(paginationQuery, { slug });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="md:max-w-[1440px] mx-auto overflow-hidden">
+      <div className="max-w-full grid grid-cols-1 md:grid-cols-2 h-auto gap-8">
         {/* Image Section */}
-        <div className="w-full h-auto">
+        <div className="w-full md:w-[721px] h-[380px] md:h-[759px]">
           <Image
             src={product.image || "/ceramic1.png"}
             alt={product.name || "Product image"}
             width={1000}
             height={1000}
-            className="w-full h-auto object-cover rounded-lg"
+            className="w-full h-full object-cover"
           />
         </div>
 
         {/* Content Section */}
-        <div className="flex flex-col justify-center items-start space-y-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">{product.name}</h2>
-          <p className="text-lg sm:text-xl font-medium">£{product.price}</p>
-          <div>
-            <h3 className="text-lg sm:text-xl font-semibold">Description</h3>
-            <p className="text-sm sm:text-base">{product.description}</p>
-            <ul className="list-disc pl-5 space-y-1 mt-2">
-              <li>Premium material</li>
-              <li>Handmade upholstery</li>
-              <li>Quality timeless classic</li>
-            </ul>
-          </div>
-
-          {/* Dimensions */}
-          {product.dimensions && (
-            <div>
-              <h3 className="text-lg sm:text-xl font-semibold">Dimensions</h3>
-              <table className="border-collapse border border-gray-300 w-full mt-2 text-sm">
-                <thead>
-                  <tr>
-                    <th className="px-4 py-2 border">Height</th>
-                    <th className="px-4 py-2 border">Width</th>
-                    <th className="px-4 py-2 border">Depth</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="px-4 py-2 border">{product.dimensions.height}</td>
-                    <td className="px-4 py-2 border">{product.dimensions.width}</td>
-                    <td className="px-4 py-2 border">{product.dimensions.depth}</td>
-                  </tr>
-                </tbody>
-              </table>
+        <div className="w-full md:w-[721px] flex flex-col justify-center items-center p-4 md:p-10 space-y-8 md:space-y-12">
+          <div className="w-full max-w-[602px] space-y-10">
+            {/* Title and Price */}
+            <div className="flex flex-col">
+              <h2 className="text-3xl md:text-4xl">{product.name}</h2>
+              <p className="text-lg md:text-xl">£{product.price}</p>
             </div>
-          )}
 
-          {/* Add to Cart */}
-          <div className="w-full flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <div className="flex items-center space-x-4">
-              <p>Amount:</p>
-              <div className="w-[80px] h-[40px] bg-gray-100 flex justify-center items-center rounded-md">
-                <p>1</p>
+            {/* Description */}
+            <div className="space-y-2">
+              <h3 className="text-lg md:text-xl">Description</h3>
+              <p className="text-sm md:text-base">{product.description}</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Premium material</li>
+                <li>Handmade upholstery</li>
+                <li>Quality timeless classic</li>
+              </ul>
+            </div>
+
+            {/* Dimensions */}
+            {product.dimensions && (
+              <div className="w-full">
+                <h3 className="text-lg md:text-xl">Dimensions</h3>
+                <table className="border-collapse border border-gray-300 w-full mt-2">
+                  <thead>
+                    <tr>
+                      <th className="px-4 py-2 border">Height</th>
+                      <th className="px-4 py-2 border">Width</th>
+                      <th className="px-4 py-2 border">Depth</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="px-4 py-2 border">{product.dimensions.height }</td>
+                      <td className="px-4 py-2 border">{product.dimensions.width }</td>
+                      <td className="px-4 py-2 border">{product.dimensions.depth }</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+            )}
+
+            {/* Amount and Add to Cart */}
+            <div className="flex flex-col md:flex-row justify-between items-center mt-4 space-y-4 md:space-y-0">
+              <div className="w-full md:w-[209px] h-[46px] flex justify-between items-center">
+                <p>Amount:</p>
+                <div className="w-[122px] h-[46px] bg-[#f9f9f9] flex justify-center items-center">
+                  <p>1</p>
+                </div>
+              </div>
+              <AddToCart
+                name={product.name}
+                description={product.description}
+                price={product.price}
+                currency={"USD"}
+                image={product.image}
+                price_id={product.price_id}
+              />
             </div>
-            <AddToCart
-              name={product.name}
-              description={product.description}
-              price={product.price}
-              currency={"USD"}
-              image={product.image}
-              price_id={product.price_id}
-            />
           </div>
         </div>
       </div>
@@ -148,10 +155,10 @@ const ProductDetails = async ({ params }: { params: { slug: string } }) => {
       </div>
 
       {/* Additional Components */}
-      <div className="flex flex-col mt-12 space-y-6">
+      <div className="flex flex-col mt-12">
         <Ceramics />
-        <div className="flex justify-center">
-          <button className="w-full sm:w-[192px] h-[56px] text-[#2A254B] bg-gray-100 rounded-md shadow-md hover:bg-gray-200 transition">
+        <div className="flex items-center justify-center">
+          <button className="md:w-[192px] h-[56px] text-[#2A254B] bg-[#f9f9f9] m-2 w-full">
             View collection
           </button>
         </div>
