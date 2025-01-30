@@ -34,13 +34,13 @@ export default function ShoppingCartModal() {
 
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={handleCartClick}>
-      <SheetContent className="sm:max-w-lg w-[99vw]">
+      <SheetContent className="sm:max-w-lg max-w-full w-full">
         <SheetHeader>
           <SheetTitle>Shopping Cart</SheetTitle>
         </SheetHeader>
 
         {/* 🔹 If User is Signed In, Show Cart */}
-        <SignedIn>
+        <SignedIn >
           <div className="h-full flex flex-col justify-between">
             <div className="mt-8 flex-1 overflow-y-auto">
               <ul className="-my-6 divide-y divide-gray-200">
