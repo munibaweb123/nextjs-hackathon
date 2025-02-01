@@ -28,11 +28,12 @@ export default function CheckoutNow({ name, description, price, currency, image,
   return (
     <Button
       className="w-full hover:text-white shadow-md opacity-0 hover:opacity-100 hover:bg-[#4E4D93]"
+      variant={"outline"}
       onClick={() => {
        buyNow(Product.price_id) // Open the cart when item is added
       }}
     >
-      Add to Cart
+      Checkout now
     </Button>
   );
 }
