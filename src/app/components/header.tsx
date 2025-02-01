@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 import { ShoppingBag } from "lucide-react";
 import { useShoppingCart } from "use-shopping-cart";
 import SearchBar from "./search";
-import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton } from "@clerk/clerk-react"; 
+import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton } from "@clerk/clerk-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,13 +18,17 @@ const Header = () => {
       {/* Main Header Row */}
       <div className="flex justify-between items-center border-b-2 pb-3 md:pb-4">
         
-        {/* Mobile Menu Button */}
-        <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </button>
-
         {/* Logo */}
         <h1 className="text-xl md:text-2xl font-clash">Muniba e-shop</h1>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex gap-x-6 text-lg">
+          <Link href="/" className="hover:text-blue-600">Home</Link>
+          <Link href="/cart" className="hover:text-blue-600">Cart</Link>
+          <Link href="/about" className="hover:text-blue-600">About</Link>
+          <Link href="/product" className="hover:text-blue-600">Product</Link>
+          <Link href="/productlisting" className="hover:text-blue-600">Product Listing</Link>
+        </nav>
 
         {/* Right Side: Cart & Authentication */}
         <div className="flex items-center gap-x-4">
@@ -50,6 +54,11 @@ const Header = () => {
               </Button>
             </SignOutButton>
           </SignedIn>
+
+          {/* Mobile Menu Button */}
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
         </div>
       </div>
 
@@ -59,24 +68,21 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <nav
-        className={`absolute top-0 left-0 w-full bg-white z-10 p-6 shadow-lg md:hidden transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? "block" : "hidden"
-        }`}
-      >
-        <button className="absolute top-4 right-4" onClick={() => setIsMenuOpen(false)}>
-          <FaTimes size={24} />
-        </button>
+      {isMenuOpen && (
+        <nav className="absolute top-0 left-0 w-full bg-white z-10 p-6 shadow-lg md:hidden">
+          <button className="absolute top-4 right-4" onClick={() => setIsMenuOpen(false)}>
+            <FaTimes size={24} />
+          </button>
 
-        {/* Mobile Menu Links */}
-        <ul className="flex flex-col gap-y-6 text-lg mt-10">
-          <li><Link href={"/"} onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-          <li><Link href={"/cart"} onClick={() => setIsMenuOpen(false)}>Cart</Link></li>
-          <li><Link href={"/about"} onClick={() => setIsMenuOpen(false)}>About</Link></li>
-          <li><Link href={"/product"} onClick={() => setIsMenuOpen(false)}>Product</Link></li>
-          <li><Link href={"/productlisting"} onClick={() => setIsMenuOpen(false)}>Product Listing</Link></li>
-        </ul>
-      </nav>
+          <ul className="flex flex-col gap-y-6 text-lg mt-10">
+            <li><Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+            <li><Link href="/cart" onClick={() => setIsMenuOpen(false)}>Cart</Link></li>
+            <li><Link href="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+            <li><Link href="/product" onClick={() => setIsMenuOpen(false)}>Product</Link></li>
+            <li><Link href="/productlisting" onClick={() => setIsMenuOpen(false)}>Product Listing</Link></li>
+          </ul>
+        </nav>
+      )}
     </div>
   );
 };
