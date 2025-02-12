@@ -121,4 +121,4 @@ export default function ShoppingCartModal() {
       </SheetContent>
     </Sheet>
   );
-}
+} 
